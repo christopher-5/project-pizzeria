@@ -93,7 +93,7 @@
           console.log(product);
           console.log(product == trigger);
           /* START: if the active product isn't the element of thisProduct */
-          if (!product == trigger) {
+          if (product != trigger) {
             /* remove class active for the active product */
           product.classList.remove('active');          
           }
