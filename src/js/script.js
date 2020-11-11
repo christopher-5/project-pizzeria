@@ -34,6 +34,7 @@
     },
   };
 
+  // eslint-disable-next-line no-unused-vars
   const classNames = {
     menuProduct: {
       wrapperActive: 'active',
@@ -41,6 +42,7 @@
     },
   };
 
+  // eslint-disable-next-line no-unused-vars
   const settings = {
     amountWidget: {
       defaultValue: 1,
@@ -63,7 +65,7 @@
       thisProduct.initAccordion();
       thisProduct.initOrderForm();
       thisProduct.processOrder();
-      console.log('new Product: ', thisProduct);
+      // console.log('new Product: ', thisProduct);
     }
     renderInMenu() {
       const thisProduct = this;
@@ -85,6 +87,9 @@
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
+      console.log(thisProduct.imageWrapper);
     }
     
     initAccordion() {
@@ -92,7 +97,7 @@
 
       /* find the clickable trigger (the element that should react to clicking) */
       const trigger = thisProduct.accordionTrigger;
-      console.log(trigger);
+      // console.log(trigger);
       /* START: click event listener to trigger */
       trigger.addEventListener('click', function(event){
         /* prevent default action for event */
@@ -102,11 +107,11 @@
         element.classList.toggle('active');
         /* find all active products */
         const activeProducts = document.querySelectorAll(select.all.menuProductsActive);
-        console.log(activeProducts);
+        // console.log(activeProducts);
         /* START LOOP: for each active product */
         for (let product of activeProducts) {
-          console.log(product);
-          console.log(product == element);
+          // console.log(product);
+          // console.log(product == element);
           /* START: if the active product isn't the element of thisProduct */
           if (product != element) {
             /* remove class active for the active product */
@@ -121,7 +126,7 @@
 
     initOrderForm() {
       const thisProduct = this;
-      console.log('initOrderForm' + thisProduct);
+      // console.log('initOrderForm' + thisProduct);
       thisProduct.form.addEventListener('submit', function(event){
         event.preventDefault();
         thisProduct.processOrder();
@@ -162,8 +167,27 @@
                 options: {},
               };
             }
-            thisProduct.params[paramId].options[optionId] = option.label;
-            
+            thisProduct.params[paramId].options[optionId] = option.label;            
+          }
+          /* create const with found elements */
+          const foundElements = thisProduct.imageWrapper.querySelectorAll('img');
+          console.log(optionSelected);
+
+          /* if statment - option is checked or not */
+          if (optionSelected) {
+            for (let element of foundElements) {
+              // console.log(element);
+              console.log(element.classList.value.split('-')[1] == optionId);
+              if (element.classList.value.split('-')[1] == optionId) {
+                element.classList.add('active');
+              }}
+            } 
+            else {
+              for (let element of foundElements) {
+               
+                if (element.classList.value.split('-')[1] == optionId) {
+                  element.classList.remove('active');
+                }}
           }
         }
       }
@@ -202,7 +226,7 @@
   const app = {
     initMenu: function() {
       const thisApp = this;
-      console.log('thisApp.data', thisApp.data);
+      // console.log('thisApp.data', thisApp.data);
 
       for(let productData in thisApp.data.products) {
         new Product(productData, thisApp.data.products[productData]);
@@ -215,11 +239,11 @@
     },
     init: function(){
       const thisApp = this;
-      console.log('*** App starting ***');
-      console.log('thisApp:', thisApp);
-      console.log('classNames:', classNames);
-      console.log('settings:', settings);
-      console.log('templates:', templates);
+      // console.log('*** App starting ***');
+      // console.log('thisApp:', thisApp);
+      // console.log('classNames:', classNames);
+      // console.log('settings:', settings);
+      // console.log('templates:', templates);
       thisApp.initData();
       thisApp.initMenu();
     }
