@@ -64,8 +64,9 @@
       thisProduct.getElements();
       thisProduct.initAccordion();
       thisProduct.initOrderForm();
+      thisProduct.initAmountWidget();
       thisProduct.processOrder();
-      // console.log('new Product: ', thisProduct);
+      console.log('new Product: ', thisProduct);
     }
     renderInMenu() {
       const thisProduct = this;
@@ -87,9 +88,9 @@
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
-      
+      thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
       thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
-      console.log(thisProduct.imageWrapper);
+      // console.log(thisProduct.imageWrapper);
     }
     
     initAccordion() {
@@ -171,13 +172,13 @@
           }
           /* create const with found elements */
           const foundElements = thisProduct.imageWrapper.querySelectorAll('img');
-          console.log(optionSelected);
+          // console.log(optionSelected);
 
           /* if statment - option is checked or not */
           if (optionSelected) {
             for (let element of foundElements) {
               // console.log(element);
-              console.log(element.classList.value.split('-')[1] == optionId);
+              // console.log(element.classList.value.split('-')[1] == optionId);
               if (element.classList.value.split('-')[1] == optionId) {
                 element.classList.add('active');
               }}
@@ -221,6 +222,19 @@
     //   }
     //   thisProduct.priceElem = price;
     // }
+    initAmountWidget(){
+      const thisProduct = this;
+      thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+    }
+  }
+
+  class AmountWidget {
+    constructor(element){
+      const thisWidget = this;
+
+      console.log('AmoutnWidget:', thisWidget);
+      console.log('constructor arguments:', element);
+    }
   }
 
   const app = {
@@ -239,11 +253,11 @@
     },
     init: function(){
       const thisApp = this;
-      // console.log('*** App starting ***');
-      // console.log('thisApp:', thisApp);
-      // console.log('classNames:', classNames);
-      // console.log('settings:', settings);
-      // console.log('templates:', templates);
+      console.log('*** App starting ***');
+      console.log('thisApp:', thisApp);
+      console.log('classNames:', classNames);
+      console.log('settings:', settings);
+      console.log('templates:', templates);
       thisApp.initData();
       thisApp.initMenu();
     }
