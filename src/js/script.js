@@ -55,6 +55,63 @@
     menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
   };
 
+  class AmountWidget {
+    constructor(element){
+      const thisWidget = this;
+      
+      thisWidget.getElements(element);
+      thisWidget.setValue(thisWidget.input.value);
+      console.log(thisWidget.input.value);
+      thisWidget.initActions();
+      console.log('AmoutnWidget:', thisWidget);
+      console.log('constructor arguments:', element);
+    }
+    annouce(){
+      const thisWidget = this;
+
+      const event = new Event('updated');
+      console.log(event);
+      thisWidget.element.dispatchEvent(event);
+      console.log(event);
+    }
+    setValue(value){
+      const thisWidget = this;
+  
+      const newValue = parseInt(value);
+      console.log(thisWidget);
+      thisWidget.value = newValue;
+      thisWidget.annouce();
+      thisWidget.input.value = thisWidget.value;
+    }
+    linkDecreaseHandler(event){
+      const thisWidget = this;
+      event.preventDefault();
+      thisWidget.setValue(thisWidget.input.value - 1);
+    }
+    linkIncreaseHandler(event){
+      event.preventDefault();
+      const thisWidget = this;    
+      thisWidget.setValue(thisWidget.input.value + 1);
+    }
+    initActions(){
+      const thisWidget = this;
+     
+      thisWidget.input.addEventListener('change', thisWidget.setValue(thisWidget.input.value));
+      thisWidget.linkDecrease.addEventListener('click', thisWidget.linkDecreaseHandler);
+      console.log(thisWidget.linkDecreaseHandler);
+      thisWidget.linkIncrease.addEventListener('click', thisWidget.linkIncreaseHandler);
+    }
+    getElements(element){
+      const thisWidget = this;
+      
+      thisWidget.element = element;
+      thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
+      console.log(thisWidget.input);
+      thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
+      thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
+    }
+  }
+
   class Product {
     constructor(id, data) {
       const thisProduct = this;
@@ -68,7 +125,7 @@
       thisProduct.processOrder();
       console.log('new Product: ', thisProduct);
     }
-    renderInMenu() {
+    renderInMenu(){
       const thisProduct = this;
 
       const generatedHTML = templates.menuProduct(thisProduct.data);
@@ -92,8 +149,10 @@
       thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
       // console.log(thisProduct.imageWrapper);
     }
+
     
-    initAccordion() {
+    
+    initAccordion(){
       const thisProduct = this;
 
       /* find the clickable trigger (the element that should react to clicking) */
@@ -192,6 +251,7 @@
           }
         }
       }
+      price = price * thisProduct.amountWidget.value;
       thisProduct.priceElem.innerHTML = price;
     }
 
@@ -225,17 +285,12 @@
     initAmountWidget(){
       const thisProduct = this;
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+      thisProduct.amountWidgetElem.addEventListener('updated', thisProduct.processOrder);
     }
   }
 
-  class AmountWidget {
-    constructor(element){
-      const thisWidget = this;
 
-      console.log('AmoutnWidget:', thisWidget);
-      console.log('constructor arguments:', element);
-    }
-  }
+
 
   const app = {
     initMenu: function() {
