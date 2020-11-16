@@ -60,6 +60,7 @@
       const thisWidget = this;
       
       thisWidget.getElements(element);
+      thisWidget.value = settings.amountWidget.defaultValue;
       thisWidget.setValue(thisWidget.input.value);
       console.log(thisWidget.input.value);
       thisWidget.initActions();
@@ -76,31 +77,39 @@
     }
     setValue(value){
       const thisWidget = this;
-  
+     
       const newValue = parseInt(value);
       console.log(thisWidget);
-      thisWidget.value = newValue;
-      thisWidget.annouce();
+
+      if (value != thisWidget.value && value >= settings.amountWidget.defaultMin && value <= settings.amountWidget.defaultMax) {
+        thisWidget.value = newValue;
+        thisWidget.annouce();
+      }
       thisWidget.input.value = thisWidget.value;
-    }
-    linkDecreaseHandler(event){
-      const thisWidget = this;
-      event.preventDefault();
-      thisWidget.setValue(thisWidget.input.value - 1);
-    }
-    linkIncreaseHandler(event){
-      event.preventDefault();
-      const thisWidget = this;    
-      thisWidget.setValue(thisWidget.input.value + 1);
     }
     initActions(){
       const thisWidget = this;
      
-      thisWidget.input.addEventListener('change', thisWidget.setValue(thisWidget.input.value));
-      thisWidget.linkDecrease.addEventListener('click', thisWidget.linkDecreaseHandler);
+      thisWidget.input.addEventListener('change', thisWidget.setValue(thisWidget.value));
+      thisWidget.linkDecrease.addEventListener('click', thisWidget.linkDecreaseHandler.bind(thisWidget));
       console.log(thisWidget.linkDecreaseHandler);
-      thisWidget.linkIncrease.addEventListener('click', thisWidget.linkIncreaseHandler);
+      thisWidget.linkIncrease.addEventListener('click', thisWidget.linkIncreaseHandler.bind(thisWidget));
     }
+    linkDecreaseHandler(event){
+      const thisWidget = this;
+      event.preventDefault();
+      const value = thisWidget.value - 1; 
+      console.log(value);
+      thisWidget.setValue(value);
+    }
+    linkIncreaseHandler(event){
+      event.preventDefault();
+      const thisWidget = this; 
+      const value = thisWidget.value + 1; 
+      console.log(value);
+      thisWidget.setValue(value);
+    }
+   
     getElements(element){
       const thisWidget = this;
       
@@ -208,6 +217,7 @@
       const thisProduct = this;
       const formData = utils.serializeFormToObject(thisProduct.form);
       thisProduct.params = {};
+      console.log(thisProduct);
       let price = thisProduct.data.price;
       for(let paramId in thisProduct.data.params) {
         const param = thisProduct.data.params[paramId];
@@ -285,7 +295,7 @@
     initAmountWidget(){
       const thisProduct = this;
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
-      thisProduct.amountWidgetElem.addEventListener('updated', thisProduct.processOrder);
+      thisProduct.amountWidgetElem.addEventListener('updated', thisProduct.processOrder.bind(thisProduct));
     }
   }
 
