@@ -54,12 +54,17 @@ class Cart{
       thisCart.subtotalPrice += product.price;
       thisCart.totalNumber += product.amount;
     }
+    
     thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
     console.log(thisCart.totalNumber, thisCart.subtotalPrice, thisCart.totalPrice);
     
     for(let key of thisCart.renderTotalsKeys){
       for(let elem of thisCart.dom[key]){
-        elem.innerHTML = thisCart[key];
+        if(thisCart.subtotalPrice === 0 && (key === 'deliveryFee' || key === 'totalPrice')){
+          elem.innerHTML = 0;
+        } else {
+          elem.innerHTML = thisCart[key];
+        }
       }
     }
   }
