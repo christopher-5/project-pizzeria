@@ -11,30 +11,21 @@ class Cart{
 
     thisCart.getElements(element);
     thisCart.initActions();      
-
-    // console.log('new Cart', thisCart);
   }
 
   add(menuProduct){
     const thisCart = this;      
 
     const generatedHTML = templates.cartProduct(menuProduct);
-
-    // console.log(generatedHTML);
-
+    console.log(templates.cartProduct);
+    
     const generatedDOM = utils.createDOMFromHTML(generatedHTML);
-
-    // console.log(generatedDOM);
 
     thisCart.dom.productList[menuProduct.id] = generatedDOM;
 
     const cartContainer = document.querySelector(select.cart.productList);
-    // console.log(cartContainer);
 
     cartContainer.appendChild(thisCart.dom.productList[menuProduct.id]);
-
-
-    // console.log('adding product', menuProduct);
 
     thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
     thisCart.dom.productList[menuProduct.id].addEventListener('updated', function(){
