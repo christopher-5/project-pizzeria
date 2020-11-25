@@ -29,7 +29,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "json-server": "^0.16.3"
+    "flatpickr": "^4.6.6",
+    "json-server": "^0.16.3",
+    "rangeslider-pure": "^0.4.11",
+    "rangeslider.js": "^2.3.3"
   },
   "devDependencies": {
     "autoprefixer-cli": "^1.0.0",
