@@ -16,7 +16,7 @@ class CartProduct{
 
     thisCartProduct.initAmountWidget();
     thisCartProduct.initActions();
-    // console.log(thisCartProduct);
+    
   }
 
   remove(){
@@ -28,7 +28,6 @@ class CartProduct{
         cartProduct: thisCartProduct,
       }
     });
-    console.log(thisCartProduct.dom);
     thisCartProduct.dom.wrapper.dispatchEvent(event);
   }
 
@@ -54,9 +53,9 @@ class CartProduct{
   initAmountWidget(){
     const thisCartProduct = this;
     thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidget);
-    // console.log(thisCartProduct.amount);
+    
     thisCartProduct.dom.amountWidget.addEventListener('updated', (event) => {
-      // console.log(event);
+      
       event.preventDefault();
       thisCartProduct.amount = thisCartProduct.amountWidget.value;
       thisCartProduct.price = thisCartProduct.priceSingle * thisCartProduct.amount;

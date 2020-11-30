@@ -15,7 +15,7 @@ export class DatePicker extends BaseWidget{
   initPlugin(){
     const thisWidget = this;
     thisWidget.minDate = new Date(thisWidget.value);
-    thisWidget.maxDate = utils.addDays(thisWidget.minDate + settings.datePicker.maxDaysInFuture);
+    thisWidget.maxDate = utils.addDays(thisWidget.minDate, settings.datePicker.maxDaysInFuture);
 
     // eslint-disable-next-line no-undef
     flatpickr(thisWidget.dom.input, {
@@ -33,7 +33,6 @@ export class DatePicker extends BaseWidget{
       // eslint-disable-next-line no-unused-vars
       onChange: function(selectedDates, dateStr, instance) {
         thisWidget.value = dateStr;
-        console.log('thisWidget.value:', thisWidget.value);
       }
     });
 

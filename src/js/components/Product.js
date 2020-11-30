@@ -13,7 +13,7 @@ class Product {
     thisProduct.initOrderForm();
     thisProduct.initAmountWidget();
     thisProduct.processOrder();
-    // console.log('new Product: ', thisProduct);
+    
   }
   addToCart(){
     const thisProduct = this;
@@ -55,7 +55,7 @@ class Product {
     thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
     thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
     thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
-    // console.log(thisProduct.imageWrapper);
+    
   }
 
     
@@ -65,7 +65,7 @@ class Product {
 
     /* find the clickable trigger (the element that should react to clicking) */
     const trigger = thisProduct.accordionTrigger;
-    // console.log(trigger);
+    
     /* START: click event listener to trigger */
     trigger.addEventListener('click', function(event){
       /* prevent default action for event */
@@ -75,11 +75,11 @@ class Product {
       element.classList.toggle('active');
       /* find all active products */
       const activeProducts = document.querySelectorAll(select.all.menuProductsActive);
-      // console.log(activeProducts);
+      
       /* START LOOP: for each active product */
       for (let product of activeProducts) {
-        // console.log(product);
-        // console.log(product == element);
+        
+        
         /* START: if the active product isn't the element of thisProduct */
         if (product != element) {
           /* remove class active for the active product */
@@ -95,7 +95,7 @@ class Product {
 
   initOrderForm() {
     const thisProduct = this;
-    // console.log('initOrderForm' + thisProduct);
+    
     thisProduct.form.addEventListener('submit', function(event){
       event.preventDefault();
       thisProduct.processOrder();
@@ -118,7 +118,7 @@ class Product {
     const thisProduct = this;
     const formData = utils.serializeFormToObject(thisProduct.form);
     thisProduct.params = {};
-    // console.log(thisProduct);
+    
     thisProduct.params = {};
     let price = thisProduct.data.price;
     for(let paramId in thisProduct.data.params) {
@@ -143,7 +143,7 @@ class Product {
         }
         /* create const with found elements */
         const foundElements = thisProduct.imageWrapper.querySelectorAll('img');
-        // console.log(optionSelected);
+        
 
         /* if statment - option is checked or not */
         if (optionSelected) {
@@ -156,8 +156,8 @@ class Product {
           thisProduct.params[paramId].options[optionId] = option.label;
 
           for (let element of foundElements) {
-            // console.log(element);
-            // console.log(element.classList.value.split('-')[1] == optionId);
+            
+            
             if (element.classList.value.split('-')[1] == optionId) {
               element.classList.add(classNames.menuProduct.imageVisible);
             }}
@@ -177,7 +177,7 @@ class Product {
 
     /* set the contents of thisProduct.priceElem to be the value of variable price */
     thisProduct.priceElem.innerHTML = thisProduct.price;
-    // console.log(thisProduct.params);
+    
   }
 
   // processOrder() {
