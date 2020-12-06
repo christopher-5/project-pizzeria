@@ -211,8 +211,9 @@ class Booking{
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
 
     container.appendChild(thisBooking.dom.wrapper);
-    thisBooking.dom.form.querySelector('.btn-secondary').addEventListener('click', function(){
-     
+    thisBooking.dom.form.querySelector('.btn-secondary').addEventListener('click', function(event){
+      event.preventDefault();
+
       const starters = [];
       for(let checkbox of thisBooking.dom.form.checkboxes){
         if(checkbox.checked){
