@@ -94,18 +94,20 @@ class Booking{
     thisBooking.updateDOM();
   }
 
-  sendBooking(date, hour, duration, table, ppl) {
-    const thisBooking = this;
+  sendBooking(date, hour, duration, table, ppl, starters, phone, address) {
+    
     const url = settings.db.url + '/' + settings.db.booking;
+    
 
     const payload = {
-      'id': 2,
       'date': date,
       'hour': hour,
       'table': table,
       'duration': parseInt(duration),
       'ppl': parseInt(ppl),
-      'starters': []
+      'starters': starters,
+      'phone': phone,
+      'address': address,
     };
 
 
@@ -124,7 +126,7 @@ class Booking{
       }).then(function(parsedResponse){
         console.log(parsedResponse);
       });
-    thisBooking.updateDOM();
+    
     
   }
 
@@ -186,16 +188,7 @@ class Booking{
       }
     }
 
-    thisBooking.dom.form.addEventListener('submit', function(event){
-      event.preventDefault();
-      console.log(thisBooking.dom.hoursAmount.querySelector('input').value);
-      thisBooking.sendBooking(
-        thisBooking.date, 
-        thisBooking.hourPicker.value, 
-        thisBooking.dom.hoursAmount.querySelector('input').value, 
-        thisBooking.dom.tableToSend, 
-        thisBooking.dom.peopleAmount.querySelector('input').value);
-    });
+    
   }
 
   render(container){
@@ -208,14 +201,37 @@ class Booking{
     thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.booking.hoursAmount);
     
     thisBooking.dom.form = thisBooking.dom.wrapper.querySelector(select.booking.form);
+    thisBooking.dom.form.checkboxes =  thisBooking.dom.form.querySelectorAll('input[type="checkbox"]');
     
     thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
     thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
     
+
     
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
 
     container.appendChild(thisBooking.dom.wrapper);
+    thisBooking.dom.form.querySelector('.btn-secondary').addEventListener('click', function(){
+     
+      const starters = [];
+      for(let checkbox of thisBooking.dom.form.checkboxes){
+        if(checkbox.checked){
+          starters.push(checkbox.value);
+        }
+      }
+      
+      thisBooking.sendBooking(
+        thisBooking.date, 
+        thisBooking.hourPicker.value, 
+        thisBooking.dom.hoursAmount.querySelector('input').value, 
+        thisBooking.dom.tableToSend, 
+        thisBooking.dom.peopleAmount.querySelector('input').value,
+        starters,
+        thisBooking.dom.form.querySelector('input[name="phone"]').value,
+        thisBooking.dom.form.querySelector('input[name="address"]').value);
+      
+      return true;
+    });
   }
   initWidgets(){
     const thisBooking  = this;
