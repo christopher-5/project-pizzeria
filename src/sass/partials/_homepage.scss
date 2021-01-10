@@ -1,0 +1,136 @@
+* {
+    transition-duration: 1s;
+}
+
+a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+a {
+  color: white;
+}
+
+img {
+  object-fit: cover;
+}
+
+#booking-style {
+  background-image: url(../images/assets/pizza-2.jpg);
+
+  a {
+    height: 200px;
+
+    p {
+      line-height: 200px;
+      margin: 0;
+    }
+  }
+}
+
+#order-style {
+  background-image: url(../images/assets/pizza-1.jpg);
+
+  a {
+    height: 200px;
+
+    p {
+      line-height: 200px;
+      margin: 0;
+    }
+  }
+}
+
+#openH {
+  background-color: #e74a7e;
+
+  :hover {
+      transform: none;
+  }
+}
+
+.card {
+  height: 200px;
+  margin-top: 15px;
+}
+
+.card p {
+  margin-top: 50px;
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  font-weight: 900;
+}
+
+.bul:hover {
+
+    p {
+        transform: translate(0, -30px);
+        font-size: 35px;
+    }
+}
+
+.bul:hover p.description {
+    transform: translate(0, -180px);
+    font-size: 15px;
+}
+
+.card span {
+  font-size: 20px;
+}
+
+.instagram img {
+  height: 200px;
+}
+
+.instagram {
+  margin-bottom: 30px;
+}
+
+.logo {
+  color: white;
+}
+
+.instagram i {
+    margin: 10px;
+    font-size: 45px;
+}
+
+.instagram .card p {
+    opacity: 0;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    line-height: 200px;
+    margin: 0;
+    transform: none;
+}
+
+.card .content-overlay {
+    background: rgba(0,0,0,0.7);
+    position: absolute;
+    height: 99%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    -webkit-transition: all 0.4s ease-in-out 0s;
+    -moz-transition: all 0.4s ease-in-out 0s;
+    transition: all 0.4s ease-in-out 0s;
+  }
+  
+  .card:hover .content-overlay{
+    opacity: 1;
+  }
+
+.instagram .card:hover p {
+    opacity: 1;
+}
+
+.instagram .card i:hover {
+    color: #e74a7e;
+}

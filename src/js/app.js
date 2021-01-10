@@ -11,6 +11,7 @@ const app = {
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
     
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
+    console.log(thisApp.navLinks);
 
     const idFromHash = window.location.hash.replace('#/', '');
     
@@ -52,7 +53,7 @@ const app = {
         page.id == pageId
       );
     }
-
+    
     /* add class "active" to matching pages, remove non-matching */
     for(let link of thisApp.navLinks){
       link.classList.toggle(
@@ -112,11 +113,12 @@ const app = {
     // console.log('classNames:', classNames);
     // console.log('settings:', settings);
     // console.log('templates:', templates);
+    thisApp.initHomepage();
     thisApp.initPags();
     thisApp.initData();
     thisApp.initCart();
     thisApp.initBooking();
-    thisApp.initHomepage();
+    
   },
   initBooking: function(){
     const thisApp = this;

@@ -20,13 +20,15 @@
     <div class="container">
       <div class="header__wrapper">
         <div class="logo">
-          <h1 class="logo__title"><span>Mamma</span>Mia!</h1>
-          <h2 class="logo__subtitle">the best homemade Italian food</h2>
+          <a href="#homepage">
+            <h1 class="logo__title"><span>Mamma</span>Mia!</h1>
+            <h2 class="logo__subtitle">the best homemade Italian food</h2>
+          </a>
         </div>
-        <div class="main-nav">
+        <!-- <div class="main-nav">
           <a href="#order">Order</a>
           <a href="#booking">Booking</a>
-        </div>
+        </div> -->
         <div id="cart" class="cart">
           <div class="cart__summary">
             <span class="cart__total-number">5</span>
@@ -65,7 +67,7 @@
   </header>
 
   <div id="pages">
-    <section id="home">
+    <section id="homepage">
       <div class="homepage-wrapper container"></div>
     </section>
     <section id="order">
@@ -78,78 +80,136 @@
 
   <script id="template-homepage" type="text/x-handlebars-template">
     <section>
-      <div class="row" >
+      <div class="row">
         <div class="col-6">
-          <div class="card">
-            <img class="card-img-top" style="height: 180px;" src="./images/assets/pizza-1.jpg" alt=""></div>
+          <div class="card bul" id="order-style">
+            <a href="#order">
+              <p>ORDER ONLINE</p>
+              <p class="description">Delicious food delivery</p>
+            </a>
+          </div>
           </div>
         <div class="col-6">
-          <div class="card">
-            <img class="card-img-top" style="height: 180px;" src="./images/assets/pizza-2.jpg" alt=""></div>
+          <div class="card bul" id="booking-style">
+            <a href="#booking">
+              <p>BOOK A TABLE</p>
+              <p class="description">Save your table now</p>
+            </a>
+          </div>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-12">
-          <div class="card" style="height: 180px;">
-            <div class="card-body bg-danger text-white" >
-              <p>opening hours</p>
+          <div class="card" id="openH">
+            
+              <p>Opening hours: <br>
+                <span>Mon-Sun, 12PM-11PM</span>
+              </p>
+              
+            
+          </div>
+        </div>
+      </div>
+ 
+
+    
+      <div class="carousel" data-flickity='{ "autoPlay": 3000, "pauseAutoPlayOnHover": true, "prevNextButtons": false }' >
+        <div class="carousel-cell">
+          <div class="row">
+            <div class="col-4">
+              <img src="./images//assets/pizza-3.jpg" class="img-fluid" alt="...">
+            </div>
+            <div class="col-8">
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-cell">
+          <div class="row">
+            <div class="col-4">
+              <img src="./images//assets/pizza-3.jpg" class="img-fluid" alt="...">
+            </div>
+            <div class="col-8">
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-cell">
+          <div class="row">
+            <div class="col-4">
+              <img src="./images//assets/pizza-3.jpg" class="img-fluid" alt="...">
+            </div>
+            <div class="col-8">
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
             </div>
           </div>
         </div>
       </div>
-      <h1>Flickity - wrapAround</h1>
-
-      <!-- Flickity HTML init -->
-      <div class="card mb-3" style="max-width: 540px;">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <img src="./images//assets/pizza-3.jpg" class="card-img" alt="...">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <div class="carousel"
-        data-flickity='{ "wrapAround": true }'>
-
-        <div class="carousel-cell">
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-        </div>
-
-        <div class="carousel-cell">
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-        </div>
-        
-        <div class="carousel-cell">
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-        </div>
-      </div>
-            </div>
-          </div>
-        </div>
-      </div>
+              
       
 
       <div class="instagram">
         <div class="row">
           <div class="col-4">
-            <div class="card"><img src="./images//assets/pizza-4.jpg" alt="" class="card-img" style="height: 160px;"></div>
+            <div class="card">
+              <div class="content-overlay"></div>
+              <img src="./images//assets/pizza-4.jpg" alt="" >
+              <p>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-share-alt"></i>
+            </p>
+            </div>
           </div>
           <div class="col-4">
-            <div class="card"><img src="./images//assets/pizza-5.jpg" alt="" class="card-img" style="height: 160px;"></div>
+            <div class="card">
+              <div class="content-overlay"></div>
+              <img src="./images//assets/pizza-5.jpg" alt="" class="card-img">
+              <p>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-share-alt"></i>
+              </p>
+            </div>
           </div>
           <div class="col-4">
-            <div class="card"><img src="./images//assets/pizza-6.jpg" alt="" class="card-img" style="height: 160px;"></div>
+            <div class="card">
+              <div class="content-overlay"></div>
+              <img src="./images//assets/pizza-6.jpg" alt="" class="card-img">
+              <p>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-share-alt"></i>
+              </p>
+            </div>
           </div>
-        </div>
-        <div class="row">
           <div class="col-4">
-            <div class="card"><img src="./images//assets/pizza-7.jpg" alt="" class="card-img" style="height: 160px;"></div>
+            <div class="card">
+              <div class="content-overlay"></div>
+              <img src="./images//assets/pizza-7.jpg" alt="" class="card-img">
+              <p>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-share-alt"></i>
+            </p>
+            </div>
           </div>
           <div class="col-4">
-            <div class="card"><img src="./images//assets/pizza-8.jpg" alt="" class="card-img" style="height: 160px;"></div>
+            <div class="card">
+              <div class="content-overlay"></div>
+              <img src="./images//assets/pizza-8.jpg" alt="" class="card-img">
+              <p>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-share-alt"></i>
+            </p>
+            </div>
           </div>
           <div class="col-4">
-            <div class="card"><img src="./images//assets/pizza-9.jpg" alt="" class="card-img" style="height: 160px;"></div>
+            <div class="card">
+              <div class="content-overlay"></div>
+              <img src="./images//assets/pizza-9.jpg" alt="" class="card-img">
+              <p>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-share-alt"></i>
+            </p>
+            </div>
           </div>
         </div>
       </div>
